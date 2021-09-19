@@ -19,6 +19,12 @@ export class OrderService {
     ).toPromise<Order>()
   }
 
+  public getOrderByCustomerId(id: Number): Promise<Order[]> {
+    return this.http.get<Order[]>(`${environment.apiUrl}/api/order/by-customer-id/${id}`).pipe(
+      catchError(errorResponse => { return throwError(errorResponse); })
+    ).toPromise<Order[]>()
+  }
+
   public getOrders(): Promise<Order[]> {
     console.log(environment);
 

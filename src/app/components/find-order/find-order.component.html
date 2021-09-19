@@ -1,1 +1,33 @@
-<p>find-order works!</p>
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-size-3">
+                Find orders
+            </h1>
+            <h2 class="subtitle  is-size-6">
+                Here you can find orders registered, filtered by customer
+            </h2>
+        </div>
+    </div>
+</section>
+<div class="container" style="margin-top: 20px;">
+    <div class="level">
+        <div>
+            <label class="label is-size-6">Filter by customer </label>
+            <span class="select is-small">
+                <select [(ngModel)]="selectedCustomerId" (change)='changeOrdersDisplayed()'>
+                    <option *ngFor="let item of customers" [ngValue]="item.id">
+                        {{item.firstName}} {{item.lastName}}
+                    </option>
+                </select>
+            </span>
+        </div>
+    </div>
+    <section *ngFor="let order of ordersForCustomer" class="">
+        <hr class="hr m-0">
+        <article class="p-2 is-clickable">
+           <p> {{order.id}} {{order.customer.firstName}} </p>
+        </article>
+    </section>
+</div>
