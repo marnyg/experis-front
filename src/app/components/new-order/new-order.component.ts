@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class NewOrderComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
   }
-
 }

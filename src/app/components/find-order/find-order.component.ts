@@ -12,6 +12,7 @@ import { OrderService } from 'src/app/services/order.service';
 export class FindOrderComponent implements OnInit {
   customers: Customer[] = [];
   selectedCustomerId: Number | undefined;
+  selectedOrderId: Number | undefined;
   ordersForCustomer: Order[] = []
 
   constructor(
@@ -22,7 +23,7 @@ export class FindOrderComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.customers = await this.customerService.getCustomers();
-      this.selectedCustomerId = this.customers[1].id;
+      this.selectedCustomerId = this.customers[0].id;
       this.ordersForCustomer = await this.orderService.getOrderByCustomerId(this.selectedCustomerId);
     } catch (error) { console.log(error); }
   }
@@ -34,6 +35,15 @@ export class FindOrderComponent implements OnInit {
       console.log(this.ordersForCustomer);
 
     } catch (error) { console.log(error); }
+  }
+
+  async updateOrders() {
+    if(this.selectedCustomerId===undefined){return}
+    this.ordersForCustomer = await this.orderService.getOrderByCustomerId(this.selectedCustomerId);
+    this.selectOrder(0)
+  }
+  selectOrder(id: Number) {
+    this.selectedOrderId = id
   }
 
 }

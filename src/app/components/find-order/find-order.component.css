@@ -1,3 +1,7 @@
 article:hover{
-    background-color: lightgray;
+    background-color: rgba(211, 211, 211, 0.126);
+}
+
+article.selected {
+    background-color: rgb(237, 237, 237);
 }

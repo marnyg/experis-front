@@ -6,9 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestCOmpComponent } from './components/test-comp/test-comp.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 import { NewOrderComponent } from './components/new-order/new-order.component';
 import { FindOrderComponent } from './components/find-order/find-order.component';
 import { HomeComponent } from './components/home/home.component';
+import { NewAddressComponent } from './components/new-address/new-address.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { HomeComponent } from './components/home/home.component';
     NavbarComponent,
     NewOrderComponent,
     FindOrderComponent,
-    HomeComponent
+    HomeComponent,
+    NewAddressComponent,
+    OrderFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

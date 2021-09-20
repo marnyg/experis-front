@@ -1,4 +1,3 @@
-
 <section class="hero is-light">
     <div class="hero-body">
         <div class="container">
@@ -26,8 +25,15 @@
     </div>
     <section *ngFor="let order of ordersForCustomer" class="">
         <hr class="hr m-0">
-        <article class="p-2 is-clickable">
-           <p> {{order.id}} {{order.customer.firstName}} </p>
+        <article [ngClass]="{'selected':order.id===selectedOrderId}"  class="box" (click)="selectOrder(order.id)" class="p-2 is-clickable">
+            <p> Order number: {{order.id}} </p>
+            <p> {{order.fromAddress.addressText}} ===> {{order.toAddress.addressText}}</p>
+            <div class="box" *ngIf="order.id===selectedOrderId">
+
+            <app-order-form (orderUpdated)="updateOrders()" [isEditable]="true" [order]="order"
+                >
+            </app-order-form>
+            </div>
         </article>
     </section>
 </div>
