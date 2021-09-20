@@ -4,5 +4,6 @@ import ServiceType from "./serviceType.model"
 export default interface Service{
     id: number,
     order:Order,
-    serviceType:ServiceType
+    serviceType:ServiceType,
+    date:Date
 }
