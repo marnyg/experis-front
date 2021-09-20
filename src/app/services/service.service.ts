@@ -19,8 +19,6 @@ export class ServiceService {
   }
 
   public getServices(): Promise<Service[]> {
-    console.log(environment);
-
     return this.http.get<Service[]>(`${environment.apiUrl}/api/service`).pipe(
       catchError(errorResponse => { return throwError(errorResponse); })
     ).toPromise<Service[]>();

@@ -19,8 +19,6 @@ export class AddressService {
   }
 
   public getAddresses(): Promise<Address[]> {
-    console.log(environment);
-
     return this.http.get<Address[]>(`${environment.apiUrl}/api/address`).pipe(
       catchError(errorResponse => { return throwError(errorResponse); })
     ).toPromise<Address[]>();

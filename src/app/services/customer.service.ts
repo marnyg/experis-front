@@ -19,8 +19,6 @@ export class CustomerService {
   }
 
   public getCustomers(): Promise<Customer[]> {
-    console.log(environment);
-
     return this.http.get<Customer[]>(`${environment.apiUrl}/api/customer`).pipe(
       catchError(errorResponse => { return throwError(errorResponse); })
     ).toPromise<Customer[]>();
