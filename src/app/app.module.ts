@@ -12,6 +12,8 @@ import { FindOrderComponent } from './components/find-order/find-order.component
 import { HomeComponent } from './components/home/home.component';
 import { NewAddressComponent } from './components/new-address/new-address.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
+import { Slide1Component } from './components/slides/slide1/slide1.component';
+import { Slide2Component } from './components/slides/slide2/slide2.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { OrderFormComponent } from './components/order-form/order-form.component
     FindOrderComponent,
     HomeComponent,
     NewAddressComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    Slide1Component,
+    Slide2Component,
   ],
   imports: [
     BrowserModule,
