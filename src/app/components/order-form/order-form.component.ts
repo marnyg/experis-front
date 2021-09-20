@@ -114,7 +114,7 @@ export class OrderFormComponent implements OnInit {
 
   async submitNewOrder() {
     if (this.orderIsInvalid(this.newOrder)) { return }
-    this.orderService.postOrder(this.newOrder)
+    await this.orderService.postOrder(this.newOrder)
     console.log(this.newOrder);
     this.router.navigate(['/find-order']);
   }
