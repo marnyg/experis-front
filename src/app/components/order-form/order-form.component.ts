@@ -88,10 +88,6 @@ export class OrderFormComponent implements OnInit {
   }
 
   orderIsInvalid(order: OrderForPost): boolean {
-    console.log(
-      this.newOrder.serviceIds === []
-    );
-
     return this.newOrder.customerId === undefined ||
       this.newOrder.fromAddressId === undefined ||
       this.newOrder.toAddressId === undefined ||
