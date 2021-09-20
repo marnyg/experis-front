@@ -37,7 +37,7 @@
             <div *ngIf="!createNewCustomer" class="field ">
                 <div class="control">
                     <div class="select" [ngClass]="{'is-danger': this.newOrder.customerId=== undefined}">
-                        <select [disabled]="!isInEditMode" [(ngModel)]="newOrder.customerId">
+                        <select [disabled]="!isInEditMode"  [(ngModel)]="newOrder.customerId" (ngModelChange)="changeCustomer()">
                             <option [ngValue]="undefined" disabled selected>Select customer</option>
                             <option *ngFor="let item of customers" [ngValue]="item.id">
                                 {{item.firstName}} {{item.lastName}}
