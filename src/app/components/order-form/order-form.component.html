@@ -2,8 +2,8 @@
     <div class="columns">
         <div class="column">
             <div class="field">
-                <label class="label">Customer</label>
-                <div class="control">
+                <label (click)="debug= !debug" class="label">Customer</label>
+                <div *ngIf="debug" class="control">
                     <label class="checkbox">
                         <input [disabled]="!isInEditMode" [(ngModel)]="createNewCustomer" type="checkbox">
                         Create new customer?
@@ -49,7 +49,7 @@
 
             <label class="label">Customers current address</label>
             <div class="field ">
-                <div class="control">
+                <div *ngIf="debug" class="control">
                     <label class="checkbox">
                         <input [disabled]="!isInEditMode" [(ngModel)]="createFromAddress" placeholder="Choose address"
                             type="checkbox">
@@ -59,7 +59,8 @@
             </div>
             <div class="field ">
                 <div class="control">
-                    <div class="select" [ngClass]="{'is-danger': this.newOrder.fromAddressId=== undefined}">
+                    <div *ngIf="!createFromAddress" class="select"
+                        [ngClass]="{'is-danger': this.newOrder.fromAddressId=== undefined}">
                         <select [disabled]="!isInEditMode" [(ngModel)]="newOrder.fromAddressId">
                             <option [ngValue]="undefined" disabled selected>Choose address</option>
                             <option *ngFor="let item of addresses" [ngValue]="item.id">
@@ -67,26 +68,37 @@
                             </option>
                         </select>
                     </div>
+                    <div *ngIf="createFromAddress">
+                        <div class="control">
+                            <input class="input" type="text" placeholder="To address">
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Customers future address</label>
                 <div class="field ">
-                    <div class="control">
+                    <div *ngIf="debug" class="control">
                         <label class="checkbox">
                             <input [disabled]="!isInEditMode" [(ngModel)]="createToAddress" type="checkbox">
                             Create new address?
                         </label>
                     </div>
                 </div>
-                <div class="select" [ngClass]="{'is-danger': this.newOrder.toAddressId=== undefined}">
+                <div *ngIf="!createToAddress" class="select"
+                    [ngClass]="{'is-danger': this.newOrder.toAddressId=== undefined}">
                     <select [disabled]="!isInEditMode" [(ngModel)]="newOrder.toAddressId">
                         <option [ngValue]="undefined" disabled selected>Choose address</option>
                         <option *ngFor="let item of addresses" [ngValue]="item.id">
                             {{item.addressText}}
                         </option>
                     </select>
+                </div>
+                <div *ngIf="createToAddress">
+                    <div class="control">
+                        <input class="input" type="text" placeholder="To address">
+                    </div>
                 </div>
             </div>
         </div>

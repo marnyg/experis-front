@@ -33,6 +33,8 @@ export class OrderFormComponent implements OnInit {
   toAddress: Address | undefined;
   comment: string = '';
 
+
+  debug: boolean = false
   createNewCustomer: boolean = false;
   createFromAddress: boolean = false;
   createToAddress: boolean = false;
@@ -95,14 +97,14 @@ export class OrderFormComponent implements OnInit {
       this.newOrder.toAddressId === undefined ||
       this.newOrder.date === undefined ||
       this.newOrder.serviceIds === undefined ||
-      this.newOrder.serviceIds.length===0
+      this.newOrder.serviceIds.length === 0
   }
 
   async submitUpdateOrder(event: Event) {
     event.stopPropagation()
     if (this.orderIsInvalid(this.newOrder)) { return }
     if (this.order?.id === undefined) { return }
-    this.newOrder.id=this.order.id;
+    this.newOrder.id = this.order.id;
     await this.orderService.updateOrder(this.newOrder)
     this.isInEditMode = false
     this.orderUpdated.emit()
