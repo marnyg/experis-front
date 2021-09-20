@@ -36,7 +36,7 @@
 
             <div *ngIf="!createNewCustomer" class="field ">
                 <div class="control">
-                    <div class="select">
+                    <div class="select" [ngClass]="{'is-danger': this.newOrder.customerId=== undefined}">
                         <select [disabled]="!isInEditMode" [(ngModel)]="newOrder.customerId">
                             <option [ngValue]="undefined" disabled selected>Select customer</option>
                             <option *ngFor="let item of customers" [ngValue]="item.id">
@@ -59,7 +59,7 @@
             </div>
             <div class="field ">
                 <div class="control">
-                    <div class="select">
+                    <div class="select" [ngClass]="{'is-danger': this.newOrder.fromAddressId=== undefined}">
                         <select [disabled]="!isInEditMode" [(ngModel)]="newOrder.fromAddressId">
                             <option [ngValue]="undefined" disabled selected>Choose address</option>
                             <option *ngFor="let item of addresses" [ngValue]="item.id">
@@ -80,7 +80,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="select">
+                <div class="select" [ngClass]="{'is-danger': this.newOrder.toAddressId=== undefined}">
                     <select [disabled]="!isInEditMode" [(ngModel)]="newOrder.toAddressId">
                         <option [ngValue]="undefined" disabled selected>Choose address</option>
                         <option *ngFor="let item of addresses" [ngValue]="item.id">
@@ -91,8 +91,7 @@
             </div>
         </div>
         <div class="column">
-                <h2 class="label">Services </h2>
-
+            <h2 class="label">Services </h2>
             <div *ngFor="let item of serviceTypes" class="field">
                 <label class="label">
                     <input [disabled]="!isInEditMode" [checked]="newOrder.serviceIds.includes(item.id)"
@@ -102,13 +101,18 @@
                 <p> {{item.serviceTypeDescription}} </p>
             </div>
 
+            <p *ngIf="this.newOrder.serviceIds === undefined || this.newOrder.serviceIds.length===0"
+                class="has-text-danger is-size-5">
+                <i class="fas fa-warning"></i>
+                You must choose at least one service
+            </p>
         </div>
         <div class="column">
             <div class="field ">
                 <label class="label">Date</label>
                 <div class="control">
                     <input [disabled]="!isInEditMode" [valueAsDate]="newOrder.date" (change)="setDate($event)"
-                        class="input" type="date">
+                        [ngClass]="{'is-danger': this.newOrder.date=== undefined}" class="input" type="date">
                 </div>
             </div>
 
@@ -119,16 +123,19 @@
             </div>
             <div class="field is-grouped">
                 <div *ngIf="!isEditable" class="control">
-                    <button (click)="submitNewOrder()" class="button is-primary">Submit</button>
+                    <button [disabled]="orderIsInvalid(this.newOrder)" (click)="submitNewOrder()"
+                        class="button is-primary">Submit</button>
                 </div>
                 <div *ngIf="isEditable" class="control">
-                    <button (click)="isInEditMode = !isInEditMode" class="button is-link">{{isInEditMode?'Cancel':'Edit'}}</button>
+                    <button (click)="isInEditMode = !isInEditMode"
+                        class="button is-link">{{isInEditMode?'Cancel':'Edit'}}</button>
                 </div>
                 <div *ngIf="isEditable && !isInEditMode" class="control">
                     <button (click)="deleteOrder()" class="button is-danger">Delete</button>
                 </div>
                 <div *ngIf="isEditable && isInEditMode" class="control">
-                    <button (click)="submitUpdateOrder($event)" class="button is-primary">Submit</button>
+                    <button [disabled]="orderIsInvalid(this.newOrder)" (click)="submitUpdateOrder($event)"
+                        class="button is-primary">Submit</button>
                 </div>
             </div>
         </div>
